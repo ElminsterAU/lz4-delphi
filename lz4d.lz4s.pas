@@ -378,7 +378,7 @@ begin
     PCardinal(LBytePtr)^ := LOutBytes and $7FFFFFFF; //highes bit = 0 = compressed
     //inc stream size
     {$IF CompilerVersion <= 20}{$RANGECHECKS OFF}{$IFEND} // RangeCheck might cause Internal-Error C1118
-    AStreamDescriptor.StreamSize := LOutBytes + AStreamDescriptor.StreamSize;
+    AStreamDescriptor.StreamSize := UInt64(LOutBytes) + AStreamDescriptor.StreamSize;
     {$IF CompilerVersion <= 20}{$RANGECHECKS ON}{$IFEND} // RangeCheck might cause Internal-Error C1118
     //byte written
     Result := LOutBytes + 4;

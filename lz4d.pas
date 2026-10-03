@@ -338,7 +338,7 @@ begin
       //read necessary chunk bytes - available bytes for decoding is chunk+header
       LBytes := ASourceStream.Read( PByte( LBuffer+CBlockHeader )^, LChunkSize ) + CBlockHeader;
 
-      if (LBytes < (LChunkSize + CBlockHeader)) then
+      if (Cardinal(LBytes) < (LChunkSize + CBlockHeader)) then
         raise Exception.Create('LZ4D: not enough stream data available to decode block.');
 
       //decode next block
